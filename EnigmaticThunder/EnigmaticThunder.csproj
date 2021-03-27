@@ -148,7 +148,7 @@
     <Compile Include="Modules\BuffDefs.cs" />
     <Compile Include="Modules\Sounds.cs" />
     <Compile Include="Modules\Prefabs.cs" />
-    <Compile Include="Modules\Loadout.cs" />
+    <Compile Include="Modules\Loadouts.cs" />
     <Compile Include="Modules\EffectDefs.cs" />
     <Compile Include="Modules\EliteDefs.cs" />
     <Compile Include="Modules\GameEndingDefs.cs" />

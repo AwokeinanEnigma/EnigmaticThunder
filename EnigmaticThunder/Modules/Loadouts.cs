@@ -52,7 +52,7 @@ namespace EnigmaticThunder.Modules
         }
     }
 
-    public class Skills : Util.Module
+    public class Loadouts : Util.Module
     {
         internal static ObservableCollection<SkillFamily> SkillFamilyDefinitions = new ObservableCollection<SkillFamily>();
         internal static ObservableCollection<Type> EntityStateDefinitions = new ObservableCollection<Type>();
