@@ -168,6 +168,7 @@
     <Compile Include="Util\ChainLoaderListener.cs" />
     <Compile Include="Modules\Commands.cs" />
     <Compile Include="Util\FixEntityStates.cs" />
+    <Compile Include="Util\ILLine.cs" />
     <Compile Include="Util\LogCore.cs" />
     <Compile Include="Util\Module.cs" />
     <Compile Include="Util\EnigmaticList.cs" />
