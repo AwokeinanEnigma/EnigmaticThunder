@@ -146,6 +146,9 @@
     <Compile Include="Modules\Artifacts.cs" />
     <Compile Include="Modules\Bodies.cs" />
     <Compile Include="Modules\Buffs.cs" />
+    <Compile Include="Modules\Effects.cs" />
+    <Compile Include="Modules\Elites.cs" />
+    <Compile Include="Modules\GameEndings.cs" />
     <Compile Include="Modules\Languages.cs" />
     <Compile Include="Modules\MusicTracks.cs" />
     <Compile Include="Modules\NetworkPrefabs.cs" />
@@ -155,9 +158,6 @@
     <Compile Include="Modules\Sounds.cs" />
     <Compile Include="Modules\Prefabs.cs" />
     <Compile Include="Modules\Loadouts.cs" />
-    <Compile Include="Modules\EffectDefs.cs" />
-    <Compile Include="Modules\EliteDefs.cs" />
-    <Compile Include="Modules\GameEndingDefs.cs" />
     <Compile Include="Modules\Pickups.cs" />
     <Compile Include="Modules\Projectiles.cs" />
     <Compile Include="Modules\Masters.cs" />

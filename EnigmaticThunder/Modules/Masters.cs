@@ -15,16 +15,26 @@ namespace EnigmaticThunder.Modules
             //Meow (Waiting for something to happen?)
         }
 
-        public static void RegisterMaster(GameObject Master)
+        /// <summary>
+        /// Adds a GameObject to the master catalog.
+        /// GameObject cannot be null and have a CharacterMaster component.
+        /// </summary>
+        /// <param name="master">The master GameObject to register to the master catalog.</param>
+        /// <returns></returns>
+        public static void RegisterMaster(GameObject master)
         {
             //Check if the SurvivorDef has already been registered.
-            if (MasterDefinitions.Contains(Master))
+            if (MasterDefinitions.Contains(master) || !master.GetComponent<CharacterMaster>())
             {
-                LogCore.LogE(Master + " has already been registered, please do not register the same master prefab twice.");
-                return;
+                string error = master + " has already been registered, please do not register the same master twice.";
+                if (!master.GetComponent<CharacterMaster>())
+                {
+                    error += " And/Or, the master does not have a character master component.";
+                }
+                LogCore.LogE(error);
             }
             //If not, add it to our SurvivorDefinitions
-            MasterDefinitions.Add(Master);
+            MasterDefinitions.Add(master);
         }
 
         public override void ModifyContentPack(ContentPack pack)

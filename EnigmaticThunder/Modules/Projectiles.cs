@@ -1,5 +1,6 @@
 ﻿using EnigmaticThunder.Util;
 using RoR2;
+using RoR2.Projectile;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UnityEngine;
@@ -15,13 +16,23 @@ namespace EnigmaticThunder.Modules
             //Meow (Waiting for something to happen?)
         }
 
+        /// <summary>
+        /// Adds a GameObject to the projectile catalog.
+        /// GameObject cannot be null and must have a ProjectileController component.
+        /// </summary>
+        /// <param name="projectile">The projectile to register to the projectile catalog.</param>
+        /// <returns></returns>
         public static void RegisterProjectile(GameObject projectile)
         {
             //Check if the SurvivorDef has already been registered.
-            if (ProjectileDefinitions.Contains(projectile))
+            if (ProjectileDefinitions.Contains(projectile) || !projectile || !projectile.GetComponent<ProjectileController>())
             {
-                LogCore.LogE(projectile + " has already been registered, please do not register the same projectile twice.");
-                return;
+                string error = projectile + " has already been registered, please do not register the same projectile twice.";
+                if (!projectile.GetComponent<ProjectileController>())
+                {
+                    error += " And/Or, the projectile does not have a projectile controller component.";
+                }
+                LogCore.LogE(error);
             }
             //If not, add it to our SurvivorDefinitions
             ProjectileDefinitions.Add(projectile);

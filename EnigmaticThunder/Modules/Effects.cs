@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace EnigmaticThunder.Modules
 {
-    public class EffectDefs : Module
+    public class Effects : Module
     {
         internal static ObservableCollection<EffectDef> EffectDefDefinitions = new ObservableCollection<EffectDef>();
         public override void Load()

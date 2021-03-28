@@ -17,6 +17,10 @@ namespace EnigmaticThunder.Modules
             //Meow (Waiting for something to happen?)
         }
 
+        /// <summary>
+        /// Registers an item def to the item catalog
+        /// </summary>
+        /// <param name="itemDef">The item def you want to register.</param>
         public static void RegisterItem(ItemDef itemDef)
         {
             //Check if the SurvivorDef has already been registered.
@@ -28,6 +32,10 @@ namespace EnigmaticThunder.Modules
             //If not, add it to our SurvivorDefinitions
             ItemDefDefinitions.Add(itemDef);
         }
+        /// <summary>
+        /// Registers an equipment def to the item catalog
+        /// </summary>
+        /// <param name="itemDef">The equipment def you want to register.</param>
         public static void RegisterEquipment(EquipmentDef equipmentDef)
         {
             //Check if the SurvivorDef has already been registered.

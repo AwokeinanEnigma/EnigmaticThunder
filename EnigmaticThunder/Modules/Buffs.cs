@@ -33,6 +33,10 @@ namespace EnigmaticThunder.Modules
             c.Emit(OpCodes.Ldsfld, typeof(ContentManager).GetField(nameof(ContentManager.buffDefs)));
         }
 
+        /// <summary>
+        /// Registers a buff def to the buff catalog
+        /// </summary>
+        /// <param name="BuffDef">The buff def you want to register.</param>
         public static void RegisterBuff(BuffDef BuffDef)
         {
             //Check if the SurvivorDef has already been registered.
