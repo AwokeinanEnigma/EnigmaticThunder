@@ -9,6 +9,9 @@ using BepInEx;
 
 namespace EnigmaticThunder.Modules
 {
+    /// <summary>
+    /// Helper class for adding language tokens.
+    /// </summary>
     public class Languages : Module
     {
         private static Dictionary<string, Dictionary<string, string>> customLanguage = new Dictionary<string, Dictionary<string, string>>();
@@ -16,7 +19,7 @@ namespace EnigmaticThunder.Modules
         private static List<LanguageOverlay> temporaryOverlays = new List<LanguageOverlay>();
         private const string genericLanguage = "generic";
 
-        public override void Load()
+        internal override void Load()
         {
             On.RoR2.Language.GetLocalizedStringByToken += Language_GetLocalizedStringByToken;
             On.RoR2.Language.TokenIsRegistered += Language_TokenIsRegistered;

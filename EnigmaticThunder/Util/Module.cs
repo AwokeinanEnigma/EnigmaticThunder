@@ -14,19 +14,22 @@ namespace EnigmaticThunder.Util
         }
     }
 
+    /// <summary>
+    /// Base module.
+    /// </summary>
     public abstract class Module
     {
-        public virtual void Load()
+        internal virtual void Load()
         {
             EnigmaticThunder.start += Start;
         }
 
-        public virtual void Start()
+        internal virtual void Start()
         {
 
         }
 
-        public virtual void ModifyContentPack(ContentPack pack)
+        internal virtual void ModifyContentPack(ContentPack pack)
         {
 
         }

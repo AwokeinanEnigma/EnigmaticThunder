@@ -6,28 +6,35 @@ using UnityEngine;
 
 namespace EnigmaticThunder.Modules
 {
+    /// <summary>
+    /// honestly just save yourself the headache and use the Prefabs class 
+    /// </summary>
     public class NetworkPrefabs : Module
     {
         internal static ObservableCollection<GameObject> NetworkPrefabDefinitions = new ObservableCollection<GameObject>();
-        public override void Load()
+        internal override void Load()
         {
             base.Load();
             //Meow (Waiting for something to happen?)
         }
 
+        /// <summary>
+        /// registers a network prefab just use the Prefabs class
+        /// </summary>
+        /// <param name="networkPrefab">-.-</param>
         public static void RegisterNetworkPrefab(GameObject networkPrefab)
         {
             //Check if the SurvivorDef has already been registered.
-            if (NetworkPrefabDefinitions.Contains(networkPrefab))
+            if (NetworkPrefabDefinitions.Contains(networkPrefab) || !networkPrefab)
             {
-                LogCore.LogE(networkPrefab + " has already been registered, please do not register the same NetworkPrefab twice.");
+                LogCore.LogE(networkPrefab + " has already been registered, please do not register the same NetworkPrefab twice. Or is null.");
                 return;
             }
             //If not, add it to our SurvivorDefinitions
             NetworkPrefabDefinitions.Add(networkPrefab);
         }
 
-        public override void ModifyContentPack(ContentPack pack)
+        internal override void ModifyContentPack(ContentPack pack)
         {
             base.ModifyContentPack(pack);
 

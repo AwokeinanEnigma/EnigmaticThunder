@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-public  class EnigmaticList<T> : List<T>
+
+#pragma warning disable 
+public class EnigmaticList<T> : List<T>
 {
     public delegate void OnRemoval(T objectRemoved);
     public delegate void OnAddition(T objectRemoved);

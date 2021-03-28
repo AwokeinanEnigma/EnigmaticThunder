@@ -7,15 +7,22 @@ using UnityEngine;
 
 namespace EnigmaticThunder.Modules
 {
+    /// <summary>
+    /// Helper class for adding GameEndingDefs to the GameEndingCatalog.
+    /// </summary>
     public class GameEndings : Module
     {
         internal static ObservableCollection<GameEndingDef> GameEndingDefDefinitions = new ObservableCollection<GameEndingDef>();
-        public override void Load()
+        internal override void Load()
         {
             base.Load();
             //Meow (Waiting for something to happen?)
         }
 
+        /// <summary>
+        /// Registers a GameEndingDef to the GameEndingCatalog.
+        /// </summary>
+        /// <param name="gameEndingDef">The GameEndingDef </param>
         public static void RegisterGameEndingDef(GameEndingDef gameEndingDef)
         {
             //Check if the SurvivorDef has already been registered.
@@ -28,7 +35,7 @@ namespace EnigmaticThunder.Modules
             GameEndingDefDefinitions.Add(gameEndingDef);
         }
 
-        public override void ModifyContentPack(ContentPack pack)
+        internal override void ModifyContentPack(ContentPack pack)
         {
             base.ModifyContentPack(pack);
             //Make a list of survivor defs (we'll be converting it to an array later)

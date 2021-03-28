@@ -10,6 +10,9 @@ using EnigmaticThunder.Util;
 
 namespace EnigmaticThunder.Modules
 {
+    /// <summary>
+    /// Helper class for cloning prefabs.
+    /// </summary>
     public static class Prefabs
     {
         private static bool needToRegister;

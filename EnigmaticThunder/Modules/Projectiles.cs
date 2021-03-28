@@ -7,10 +7,13 @@ using UnityEngine;
 
 namespace EnigmaticThunder.Modules
 {
+    /// <summary>
+    /// Helper class for registering projectiles to the projectile catalog.
+    /// </summary>
     public class Projectiles : Module
     {
         internal static ObservableCollection<GameObject> ProjectileDefinitions = new ObservableCollection<GameObject>();
-        public override void Load()
+        internal override void Load()
         {
             base.Load();
             //Meow (Waiting for something to happen?)
@@ -38,7 +41,7 @@ namespace EnigmaticThunder.Modules
             ProjectileDefinitions.Add(projectile);
         }
 
-        public override void ModifyContentPack(ContentPack pack)
+        internal override void ModifyContentPack(ContentPack pack)
         {
             base.ModifyContentPack(pack);
 

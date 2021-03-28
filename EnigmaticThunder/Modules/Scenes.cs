@@ -7,15 +7,22 @@ using UnityEngine;
 
 namespace EnigmaticThunder.Modules
 {
+    /// <summary>
+    /// Helper class for registering scene defs
+    /// </summary>
     public class Scenes : Module
     {
         internal static ObservableCollection<SceneDef> SceneDefDefinitions = new ObservableCollection<SceneDef>();
-        public override void Load()
+        internal override void Load()
         {
             base.Load();
             //Meow (Waiting for something to happen?)
         }
 
+        /// <summary>
+        /// Registers a SceneDef to the SceneCatalog
+        /// </summary>
+        /// <param name="sceneDef">The SceneDef to register.</param>
         public static void RegisterSceneDef(SceneDef sceneDef)
         {
             //Check if the SurvivorDef has already been registered.
@@ -28,7 +35,7 @@ namespace EnigmaticThunder.Modules
             SceneDefDefinitions.Add(sceneDef);
         }
 
-        public override void ModifyContentPack(ContentPack pack)
+        internal override void ModifyContentPack(ContentPack pack)
         {
             base.ModifyContentPack(pack);
 

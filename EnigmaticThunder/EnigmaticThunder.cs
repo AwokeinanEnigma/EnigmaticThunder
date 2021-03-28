@@ -18,6 +18,7 @@ using UnityEngine.SceneManagement;
 [assembly: SecurityPermission(SecurityAction.RequestMinimum, SkipVerification = true)]
 #pragma warning restore CS0618 // Type or member is obsolete
 [module: UnverifiableCode]
+#pragma warning disable 
 
 namespace EnigmaticThunder
 {
@@ -54,8 +55,14 @@ namespace EnigmaticThunder
         private static int modErrors = 0;
 
         private ContentPack internalContentPack = new ContentPack();
-
+        
+        /// <summary>
+        /// Called before modules modify the content pack.
+        /// </summary>
         public event Action preContentPackLoad;
+        /// <summary>
+        /// Called AFTER the modules modify the content pack.
+        /// </summary>
         public event Action postContentPackLoad;
 
         internal static ObservableCollection<Util.Module> modules = new ObservableCollection<Util.Module>(); 
@@ -88,6 +95,8 @@ namespace EnigmaticThunder
             SingletonHelper.Assign<EnigmaticThunder>(ref EnigmaticThunder.instance, this);
 
             GatherModules();
+
+            RoR2.RoR2Application.isModded = true;
 
             ErrorListener.vanillaErrors.addition += VanillaErrors_addition;
             ErrorListener.modErrors.addition += ModErrors_addition;

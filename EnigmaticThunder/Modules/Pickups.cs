@@ -7,11 +7,14 @@ using UnityEngine;
 
 namespace EnigmaticThunder.Modules
 {
+    /// <summary>
+    /// Helper class for adding items and equipment.
+    /// </summary>
     public class Pickups : Module
     {
         internal static ObservableCollection<EquipmentDef> EquipmentDefDefinitions = new ObservableCollection<EquipmentDef>();
         internal static ObservableCollection<ItemDef> ItemDefDefinitions = new ObservableCollection<ItemDef>();
-        public override void Load()
+        internal override void Load()
         {
             base.Load();
             //Meow (Waiting for something to happen?)
@@ -35,7 +38,7 @@ namespace EnigmaticThunder.Modules
         /// <summary>
         /// Registers an equipment def to the item catalog
         /// </summary>
-        /// <param name="itemDef">The equipment def you want to register.</param>
+        /// <param name="equipmentDef">The equipment def you want to register.</param>
         public static void RegisterEquipment(EquipmentDef equipmentDef)
         {
             //Check if the SurvivorDef has already been registered.
@@ -47,7 +50,7 @@ namespace EnigmaticThunder.Modules
             //If not, add it to our SurvivorDefinitions
             EquipmentDefDefinitions.Add(equipmentDef);
         }
-        public override void ModifyContentPack(ContentPack pack)
+        internal override void ModifyContentPack(ContentPack pack)
         {
             base.ModifyContentPack(pack);
 

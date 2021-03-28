@@ -7,15 +7,22 @@ using UnityEngine;
 
 namespace EnigmaticThunder.Modules
 {
+    /// <summary>
+    /// Helper class for registering network sound event defs to the network sound event catalog.
+    /// </summary>
     public class NetworkSoundEvents : Module
     {
         internal static ObservableCollection<NetworkSoundEventDef> NetworkSoundEventDefDefinitions = new ObservableCollection<NetworkSoundEventDef>();
-        public override void Load()
+        internal override void Load()
         {
             base.Load();
             //Meow (Waiting for something to happen?)
         }
 
+        /// <summary>
+        /// Registers a sound def to the network sound event catalog.
+        /// </summary>
+        /// <param name="NetworkSoundEventDef"></param>
         public static void RegisterSoundDef(NetworkSoundEventDef NetworkSoundEventDef)
         {
             //Check if the SurvivorDef has already been registered.
@@ -28,7 +35,7 @@ namespace EnigmaticThunder.Modules
             NetworkSoundEventDefDefinitions.Add(NetworkSoundEventDef);
         }
 
-        public override void ModifyContentPack(ContentPack pack)
+        internal override void ModifyContentPack(ContentPack pack)
         {
             base.ModifyContentPack(pack);
             //Make a list of survivor defs (we'll be converting it to an array later)

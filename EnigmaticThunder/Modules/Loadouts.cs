@@ -14,6 +14,9 @@ using UnityEngine;
 namespace EnigmaticThunder.Modules
 {
 
+    /// <summary>
+    /// Helper class for adding entity states, skill families, skill defs, survivor defs, skins, and entity state configurations.
+    /// </summary>
     public class Loadouts : Util.Module
     {
         internal static ObservableCollection<SkillFamily> SkillFamilyDefinitions = new ObservableCollection<SkillFamily>();
@@ -22,7 +25,7 @@ namespace EnigmaticThunder.Modules
         internal static ObservableCollection<SurvivorDef> SurvivorDefinitions = new ObservableCollection<SurvivorDef>();
         internal static ObservableCollection<EntityStateConfiguration> EntityStateConfigurationDefinitions = new ObservableCollection<EntityStateConfiguration>();
         internal static readonly HashSet<SkinDef> AddedSkins = new HashSet<SkinDef>();
-        public override void Load()
+        internal override void Load()
         {
             base.Load();
             //Meow (Waiting for something to happen?)
@@ -49,7 +52,12 @@ namespace EnigmaticThunder.Modules
             return true;
         }
 
-
+        /// <summary>
+        /// Registers a SkillFamily to the SkillCatalog.
+        /// Must be called before Catalog init (during Awake() or OnEnable())
+        /// </summary>
+        /// <param name="skillFamily">The SkillDef to add</param>
+        /// <returns>True if the event was registered</returns>
         public static bool RegisterSkillFamily(SkillFamily skillFamily)
         {
             //Check if the SurvivorDef has already been registered.
@@ -63,6 +71,13 @@ namespace EnigmaticThunder.Modules
             return true;
         }
 
+        /// <summary>
+        /// Adds the type of an EntityState to the EntityStateCatalog.
+        /// State must derive from EntityStates.EntityState.
+        /// Note that SkillDefs and SkillFamiles must also be added seperately.
+        /// </summary>
+        /// <param name="entityState">The type to add</param>
+        /// <returns>True if succesfully added</returns>
         public static bool RegisterEntityState(Type entityState)
         {
             //Check if the entity state has already been registered, is abstract, or is not a subclass of the base EntityState
@@ -77,6 +92,12 @@ namespace EnigmaticThunder.Modules
             return true;
         }
 
+        /// <summary>
+        /// Registers a SkillDef to the SkillCatalog.
+        /// Must be called before Catalog init (during Awake() or OnEnable())
+        /// </summary>
+        /// <param name="skillDef">The SkillDef to add</param>
+        /// <returns>True if the event was registered</returns>
         public static bool RegisterSkillDef(SkillDef skillDef)
         {
             //Check if the SurvivorDef has already been registered.
@@ -95,15 +116,15 @@ namespace EnigmaticThunder.Modules
         /// This must be called before the SurvivorCatalog inits, so before plugin.Start().
         /// If this is called after the SurvivorCatalog inits then this will return false and ignore the survivor.        /// The survivor prefab must be non-null
         /// </summary>
-        /// <param name="survivor">The survivor to add.</param>
+        /// <param name="survivorDef">The survivor to add.</param>
         /// <returns>true if survivor will be added</returns>
-        public static bool RegisterSurvivorDef(SurvivorDef def)
+        public static bool RegisterSurvivorDef(SurvivorDef survivorDef)
         {
             //Check if the SurvivorDef has already been registered.
-            if (SurvivorDefinitions.Contains(def) || !def.bodyPrefab)
+            if (SurvivorDefinitions.Contains(survivorDef) || !survivorDef.bodyPrefab)
             {
-                string error = Language.GetString(def.displayNameToken) + " has already been registered, please do not register the same SurvivorDef twice.";
-                if (!def.bodyPrefab)
+                string error = Language.GetString(survivorDef.displayNameToken) + " has already been registered, please do not register the same SurvivorDef twice.";
+                if (!survivorDef.bodyPrefab)
                 {
                     error = error + " And/Or, the body prefab is null. Please make sure your body prefab is not null before creating your SurvivorDef.";
                 }
@@ -112,11 +133,11 @@ namespace EnigmaticThunder.Modules
                 return false;
             }
             //If not, add it to our SurvivorDefinitions
-            SurvivorDefinitions.Add(def);
+            SurvivorDefinitions.Add(survivorDef);
             return true;
         }
 
-        public override void ModifyContentPack(ContentPack pack)
+        internal override void ModifyContentPack(ContentPack pack)
         {
             base.ModifyContentPack(pack);
             //Make a lists full of added content
@@ -253,6 +274,7 @@ namespace EnigmaticThunder.Modules
         /// </summary>
         public struct SkinDefInfo
         {
+#pragma warning disable 
             public SkinDef[] BaseSkins;
             public Sprite Icon;
             public string NameToken;

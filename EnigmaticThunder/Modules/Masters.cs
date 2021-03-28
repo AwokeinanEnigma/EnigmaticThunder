@@ -6,10 +6,13 @@ using UnityEngine;
 
 namespace EnigmaticThunder.Modules
 {
+    /// <summary>
+    /// Helper class for registering masters to the MasterCatalog
+    /// </summary>
     public class Masters : Module
     {
         internal static ObservableCollection<GameObject> MasterDefinitions = new ObservableCollection<GameObject>();
-        public override void Load()
+        internal override void Load()
         {
             base.Load();
             //Meow (Waiting for something to happen?)
@@ -37,7 +40,7 @@ namespace EnigmaticThunder.Modules
             MasterDefinitions.Add(master);
         }
 
-        public override void ModifyContentPack(ContentPack pack)
+        internal override void ModifyContentPack(ContentPack pack)
         {
             base.ModifyContentPack(pack);
 

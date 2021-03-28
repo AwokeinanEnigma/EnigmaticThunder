@@ -3,6 +3,7 @@ using RoR2;
 
 namespace EnigmaticThunder.Util
 {
+#pragma warning disable
 
     public class ErrorListener : ILogListener
     {

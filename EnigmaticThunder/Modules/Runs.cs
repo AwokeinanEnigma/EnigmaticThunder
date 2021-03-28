@@ -6,15 +6,22 @@ using UnityEngine;
 
 namespace EnigmaticThunder.Modules
 {
+    /// <summary>
+    /// Helper class for adding game modes (runs). Not to be confused with game endings.
+    /// </summary>
     public class Runs : Module
     {
         internal static ObservableCollection<Run> RunDefinitions = new ObservableCollection<Run>();
-        public override void Load()
+        internal override void Load()
         {
             base.Load();
             //Meow (Waiting for something to happen?)
         }
 
+        /// <summary>
+        /// Registers a run to the game mode catalog
+        /// </summary>
+        /// <param name="run">The run to register</param>
         public static void RegisterRun(Run run)
         {
             //Check if the SurvivorDef has already been registered.
@@ -27,7 +34,7 @@ namespace EnigmaticThunder.Modules
             RunDefinitions.Add(run);
         }
 
-        public override void ModifyContentPack(ContentPack pack)
+        internal override void ModifyContentPack(ContentPack pack)
         {
             base.ModifyContentPack(pack);
 

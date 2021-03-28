@@ -7,15 +7,22 @@ using UnityEngine;
 
 namespace EnigmaticThunder.Modules
 {
+    /// <summary>
+    /// Helper class for adding custom artifacts to the game. 
+    /// </summary>
     public class Artifacts : Module
     {
         internal static ObservableCollection<ArtifactDef> ArtifactDefDefinitions = new ObservableCollection<ArtifactDef>();
-        public override void Load()
+        internal override void Load()
         {
             base.Load();
             //Meow (Waiting for something to happen?)
         }
 
+        /// <summary>
+        /// Registers an ArtifactDef to the ArtifactCatalog.
+        /// </summary>
+        /// <param name="ArtifactDef">The ArtifactDef you want to register.</param>
         public static void RegisterArtifact(ArtifactDef ArtifactDef)
         {
             //Check if the SurvivorDef has already been registered.
@@ -28,7 +35,7 @@ namespace EnigmaticThunder.Modules
             ArtifactDefDefinitions.Add(ArtifactDef);
         }
 
-        public override void ModifyContentPack(ContentPack pack)
+        internal override void ModifyContentPack(ContentPack pack)
         {
             base.ModifyContentPack(pack);
             //Make a list of survivor defs (we'll be converting it to an array later)

@@ -7,15 +7,22 @@ using UnityEngine;
 
 namespace EnigmaticThunder.Modules
 {
+    /// <summary>
+    /// Helper clsas for registering MusicTrackDefs to the MusicTrackCatalog.
+    /// </summary>
     public class MusicTracks : Module
     {
         internal static ObservableCollection<MusicTrackDef> MusicTrackDefDefinitions = new ObservableCollection<MusicTrackDef>();
-        public override void Load()
+        internal override void Load()
         {
             base.Load();
             //Meow (Waiting for something to happen?)
         }
 
+        /// <summary>
+        /// Registers a MusicTrackDefs to the MusicTrackCatalog
+        /// </summary>
+        /// <param name="MusicTrackDef">The MusicTrackDef to register.</param>
         public static void RegisterMusicTrackDef(MusicTrackDef MusicTrackDef)
         {
             //Check if the SurvivorDef has already been registered.
@@ -28,7 +35,7 @@ namespace EnigmaticThunder.Modules
             MusicTrackDefDefinitions.Add(MusicTrackDef);
         }
 
-        public override void ModifyContentPack(ContentPack pack)
+        internal override void ModifyContentPack(ContentPack pack)
         {
             base.ModifyContentPack(pack);
             //Make a list of survivor defs (we'll be converting it to an array later)

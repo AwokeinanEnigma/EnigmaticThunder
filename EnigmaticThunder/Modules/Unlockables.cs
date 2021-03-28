@@ -7,15 +7,22 @@ using UnityEngine;
 
 namespace EnigmaticThunder.Modules
 {
+    /// <summary>
+    /// Helper class for registering UnlockableDef to the UnlockableCatalog.
+    /// </summary>
     public class Unlockables : Module
     {
         internal static ObservableCollection<UnlockableDef> UnlockableDefDefinitions = new ObservableCollection<UnlockableDef>();
-        public override void Load()
+        internal override void Load()
         {
             base.Load();
             //Meow (Waiting for something to happen?)
         }
 
+        /// <summary>
+        /// Registers a UnlockableDef to the UnlockableCatalog
+        /// </summary>
+        /// <param name="unlockableDef">The UnlockableDef to register.</param>
         public static void RegisterUnlockableDef(UnlockableDef unlockableDef)
         {
             //Check if the SurvivorDef has already been registered.
@@ -28,7 +35,7 @@ namespace EnigmaticThunder.Modules
             UnlockableDefDefinitions.Add(unlockableDef);
         }
 
-        public override void ModifyContentPack(ContentPack pack)
+        internal override void ModifyContentPack(ContentPack pack)
         {
             base.ModifyContentPack(pack);
             //Make a list of survivor defs (we'll be converting it to an array later)

@@ -9,10 +9,13 @@ using System.Runtime.InteropServices;
 using UnityEngine;
 
 namespace EnigmaticThunder.Modules
-{
+{    
+    /// <summary>
+     /// Helper class for adding music with Wwise
+     /// </summary>
     public class Sounds : Module
-    {
-        public override void Load()
+    {   
+        internal override void Load()
         {
             base.Load();
             // Disable SoundPlus if RoR2 is running with its graphics and sound engine disabled (Dedicated Servers) to avoid any bad side effects.

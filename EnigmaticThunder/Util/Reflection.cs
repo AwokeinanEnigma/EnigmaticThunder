@@ -9,8 +9,12 @@ using MonoMod.Utils;
 
 namespace EnigmaticThunder.Util
 {
+    /// <summary>
+    /// Helper class for reflection.
+    /// </summary>
     public static class Reflection
     {
+        #pragma warning disable 
 
         private const BindingFlags AllFlags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static |
                                               BindingFlags.Instance | BindingFlags.DeclaredOnly;

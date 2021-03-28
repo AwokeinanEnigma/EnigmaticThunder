@@ -5,7 +5,7 @@ using RoR2;
 
 namespace EnigmaticThunder.Util
 {
-
+    #pragma warning disable
     public class ChainLoaderListener : ILogListener
     {
         public static event Action OnChainLoaderFinished;

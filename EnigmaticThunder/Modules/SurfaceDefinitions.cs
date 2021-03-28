@@ -7,15 +7,21 @@ using UnityEngine;
 
 namespace EnigmaticThunder.Modules
 {
+    /// <summary>
+    /// API for adding surface definitions.
+    /// </summary>
     public class SurfaceDefinitions : Module
     {
         internal static ObservableCollection<SurfaceDef> SurfaceDefDefinitions = new ObservableCollection<SurfaceDef>();
-        public override void Load()
+        internal override void Load()
         {
             base.Load();
             //Meow (Waiting for something to happen?)
         }
-
+        /// <summary>
+        /// Registers a surface def to the surface def catalog.
+        /// </summary>
+        /// <param name="surfaceDef">The surface def to register</param>
         public static void RegisterSurfaceDef(SurfaceDef surfaceDef)
         {
             //Check if the SurvivorDef has already been registered.
@@ -28,7 +34,7 @@ namespace EnigmaticThunder.Modules
             SurfaceDefDefinitions.Add(surfaceDef);
         }
 
-        public override void ModifyContentPack(ContentPack pack)
+        internal override void ModifyContentPack(ContentPack pack)
         {
             base.ModifyContentPack(pack);
             //Make a list of survivor defs (we'll be converting it to an array later)

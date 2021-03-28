@@ -9,16 +9,20 @@ using UnityEngine;
 
 namespace EnigmaticThunder.Modules
 {
+    /// <summary>
+    /// Helper class for adding custom buffs to the game. 
+    /// </summary>
     public class Buffs : Module
     {
         internal static ObservableCollection<BuffDef> BuffDefDefinitions = new ObservableCollection<BuffDef>();
-        public override void Load()
+        internal override void Load()
         {
             base.Load();
             //Meow (Waiting for something to happen?)
             IL.RoR2.BuffCatalog.Init += FixBuffCatalog;
         }
 
+        //Credits to Aaron on the RoR2 modding discord.
         internal static void FixBuffCatalog(ILContext il)
         {
             ILCursor c = new ILCursor(il);
@@ -49,7 +53,7 @@ namespace EnigmaticThunder.Modules
             BuffDefDefinitions.Add(BuffDef);
         }
 
-        public override void ModifyContentPack(ContentPack pack)
+        internal override void ModifyContentPack(ContentPack pack)
         {
             base.ModifyContentPack(pack);
             //Make a list of survivor defs (we'll be converting it to an array later)

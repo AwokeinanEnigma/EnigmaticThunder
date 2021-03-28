@@ -8,15 +8,65 @@ using UnityEngine;
 
 namespace EnigmaticThunder.Modules
 {
+    /// <summary>
+    /// Helper class for registering EffectDefs to the EffectCatalog
+    /// </summary>
     public class Effects : Module
     {
         internal static ObservableCollection<EffectDef> EffectDefDefinitions = new ObservableCollection<EffectDef>();
-        public override void Load()
+        internal override void Load()
         {
             base.Load();
             //Meow (Waiting for something to happen?)
         }
 
+        /// <summary>
+        /// Creates an EffectDef from a prefab and adds it to the EffectCatalog.
+        /// The prefab must have an the following components: EffectComponent, VFXAttributes
+        /// For more control over the EffectDef, use RegisterEffect(EffectDef)
+        /// </summary>
+        /// <param name="effect">The prefab of the effect to be added</param>
+        public static void RegisterGenericEffect(GameObject effect)
+        {
+            if (!effect)
+            {
+                LogCore.LogE(string.Format("Effect prefab: \"{0}\" is null", effect.name));
+
+                
+            }
+
+            var effectComp = effect.GetComponent<EffectComponent>();
+            if (effectComp == null)
+            {
+                LogCore.LogE(string.Format("Effect prefab: \"{0}\" does not have an EffectComponent.", effect.name));
+                
+            }
+
+            var vfxAttrib = effect.GetComponent<VFXAttributes>();
+            if (vfxAttrib == null)
+            {
+                LogCore.LogE(string.Format("Effect prefab: \"{0}\" does not have a VFXAttributes component.", effect.name));
+                
+            }
+
+            var def = new EffectDef
+            {
+                prefab = effect,
+                prefabEffectComponent = effectComp,
+                prefabVfxAttributes = vfxAttrib,
+                prefabName = effect.name,
+                spawnSoundEventName = effectComp.soundName,
+                //cullMethod = new Func<EffectData, bool>()
+            };
+            RegisterEffect(def);
+        }
+
+        /// <summary>
+        /// Creates an EffectDef from a prefab.
+        /// The prefab must have an the following components: EffectComponent, VFXAttributes
+        /// </summary>
+        /// <param name="effect">The prefab of the effect to be added</param>
+        /// <returns>The newly created EffectDef</returns>
         public static EffectDef CreateGenericEffectDef(GameObject effect)
         {
             if (!effect)
@@ -52,19 +102,24 @@ namespace EnigmaticThunder.Modules
             return def;
         }
 
-        public static void RegisterEffect(EffectDef EffectDef)
+
+        /// <summary>
+        /// Adds an EffectDef to the EffectCatalog.
+        /// </summary>
+        /// <param name="effectDef">The EffectDef to add</param>
+        public static void RegisterEffect(EffectDef effectDef)
         {
             //Check if the SurvivorDef has already been registered.
-            if (EffectDefDefinitions.Contains(EffectDef))
+            if (EffectDefDefinitions.Contains(effectDef) || !effectDef.prefab)
             {
-                LogCore.LogE(EffectDef + " has already been registered to the EffectDef Catalog, please do not register the same EffectDef twice.");
+                LogCore.LogE(effectDef + " has already been registered to the EffectDef Catalog, please do not register the same EffectDef twice. Or, the EffectDef does not have a prefab.");
                 return;
             }
             //If not, add it to our SurvivorDefinitions
-            EffectDefDefinitions.Add(EffectDef);
+            EffectDefDefinitions.Add(effectDef);
         }
 
-        public override void ModifyContentPack(ContentPack pack)
+        internal override void ModifyContentPack(ContentPack pack)
         {
             base.ModifyContentPack(pack);
             //Make a list of survivor defs (we'll be converting it to an array later)
