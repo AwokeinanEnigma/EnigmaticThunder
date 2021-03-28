@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace EnigmaticThunder.Modules
 {
-    public class NetworkSoundEventDefs : Module
+    public class NetworkSoundEvents : Module
     {
         internal static ObservableCollection<NetworkSoundEventDef> NetworkSoundEventDefDefinitions = new ObservableCollection<NetworkSoundEventDef>();
         public override void Load()
@@ -16,12 +16,12 @@ namespace EnigmaticThunder.Modules
             //Meow (Waiting for something to happen?)
         }
 
-        public static void Add(NetworkSoundEventDef NetworkSoundEventDef)
+        public static void RegisterSoundDef(NetworkSoundEventDef NetworkSoundEventDef)
         {
-            //Check if the SurvivorDef has already been added.
+            //Check if the SurvivorDef has already been registered.
             if (NetworkSoundEventDefDefinitions.Contains(NetworkSoundEventDef))
             {
-                LogCore.LogE(NetworkSoundEventDef + " has already been added to the NetworkSoundEventDef Catalog, please do not try to add the same NetworkSoundEventDef twice.");
+                LogCore.LogE(NetworkSoundEventDef + " has already been registered, please do not register the same NetworkSoundEventDef twice.");
                 return;
             }
             //If not, add it to our SurvivorDefinitions

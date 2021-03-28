@@ -16,12 +16,12 @@ namespace EnigmaticThunder.Modules
             //Meow (Waiting for something to happen?)
         }
 
-        public static void Add(ArtifactDef ArtifactDef)
+        public static void RegisterArtifact(ArtifactDef ArtifactDef)
         {
-            //Check if the SurvivorDef has already been added.
+            //Check if the SurvivorDef has already been registered.
             if (ArtifactDefDefinitions.Contains(ArtifactDef))
             {
-                LogCore.LogE(ArtifactDef + " has already been added to the ArtifactDef Catalog, please do not try to add the same ArtifactDef twice.");
+                LogCore.LogE(ArtifactDef + " has already been registered, please do not register the same ArtifactDef twice.");
                 return;
             }
             //If not, add it to our SurvivorDefinitions

@@ -1,45 +1,45 @@
 ﻿using EnigmaticThunder.Util;
 using RoR2;
-using RoR2.Skills;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UnityEngine;
 
 namespace EnigmaticThunder.Modules
 {
-    public class BuffDefs : Module
+    public class NetworkPrefabs : Module
     {
-        internal static ObservableCollection<BuffDef> BuffDefDefinitions = new ObservableCollection<BuffDef>();
+        internal static ObservableCollection<GameObject> NetworkPrefabDefinitions = new ObservableCollection<GameObject>();
         public override void Load()
         {
             base.Load();
             //Meow (Waiting for something to happen?)
         }
 
-        public static void Add(BuffDef BuffDef)
+        public static void RegisterNetworkPrefab(GameObject networkPrefab)
         {
-            //Check if the SurvivorDef has already been added.
-            if (BuffDefDefinitions.Contains(BuffDef))
+            //Check if the SurvivorDef has already been registered.
+            if (NetworkPrefabDefinitions.Contains(networkPrefab))
             {
-                LogCore.LogE(BuffDef + " has already been added to the BuffDef Catalog, please do not try to add the same BuffDef twice.");
+                LogCore.LogE(networkPrefab + " has already been registered, please do not register the same NetworkPrefab twice.");
                 return;
             }
             //If not, add it to our SurvivorDefinitions
-            BuffDefDefinitions.Add(BuffDef);
+            NetworkPrefabDefinitions.Add(networkPrefab);
         }
 
         public override void ModifyContentPack(ContentPack pack)
         {
             base.ModifyContentPack(pack);
+
             //Make a list of survivor defs (we'll be converting it to an array later)
-            List<BuffDef> defs = new List<BuffDef>();
+            List<GameObject> defs = new List<GameObject>();
             //Add everything from SurvivorDefinitions to it.
-            foreach (BuffDef def in BuffDefDefinitions)
+            foreach (GameObject def in NetworkPrefabDefinitions)
             {
                 defs.Add(def);
             }
             //Convert the list into an array and give it to the ContentPack.
-            pack.buffDefs = defs.ToArray();
+            pack.networkedObjectPrefabs = defs.ToArray();
         }
     }
 }

@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace EnigmaticThunder.Modules
 {
-    public class GameEndingDefs : Module
+    public class GameEndings : Module
     {
         internal static ObservableCollection<GameEndingDef> GameEndingDefDefinitions = new ObservableCollection<GameEndingDef>();
         public override void Load()
@@ -16,16 +16,16 @@ namespace EnigmaticThunder.Modules
             //Meow (Waiting for something to happen?)
         }
 
-        public static void Add(GameEndingDef GameEndingDef)
+        public static void RegisterGameEndingDef(GameEndingDef gameEndingDef)
         {
-            //Check if the SurvivorDef has already been added.
-            if (GameEndingDefDefinitions.Contains(GameEndingDef))
+            //Check if the SurvivorDef has already been registered.
+            if (GameEndingDefDefinitions.Contains(gameEndingDef))
             {
-                LogCore.LogE(GameEndingDef + " has already been added to the GameEndingDef Catalog, please do not try to add the same GameEndingDef twice.");
+                LogCore.LogE(gameEndingDef + " has already been registered, please do not register the same GameEndingDef twice.");
                 return;
             }
             //If not, add it to our SurvivorDefinitions
-            GameEndingDefDefinitions.Add(GameEndingDef);
+            GameEndingDefDefinitions.Add(gameEndingDef);
         }
 
         public override void ModifyContentPack(ContentPack pack)

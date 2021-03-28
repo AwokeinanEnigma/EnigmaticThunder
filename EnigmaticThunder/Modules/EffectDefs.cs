@@ -1,6 +1,7 @@
 ﻿using EnigmaticThunder.Util;
 using RoR2;
 using RoR2.Skills;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UnityEngine;
@@ -16,12 +17,47 @@ namespace EnigmaticThunder.Modules
             //Meow (Waiting for something to happen?)
         }
 
-        public static void Add(EffectDef EffectDef)
+        public static EffectDef CreateGenericEffectDef(GameObject effect)
         {
-            //Check if the SurvivorDef has already been added.
+            if (!effect)
+            {
+                LogCore.LogE(string.Format("Effect prefab: \"{0}\" is null", effect.name));
+
+                return null;
+            }
+
+            var effectComp = effect.GetComponent<EffectComponent>();
+            if (effectComp == null)
+            {
+                LogCore.LogE(string.Format("Effect prefab: \"{0}\" does not have an EffectComponent.", effect.name));
+                return null;
+            }
+
+            var vfxAttrib = effect.GetComponent<VFXAttributes>();
+            if (vfxAttrib == null)
+            {
+                LogCore.LogE(string.Format("Effect prefab: \"{0}\" does not have a VFXAttributes component.", effect.name));
+                return null;
+            }
+
+            var def = new EffectDef
+            {
+                prefab = effect,
+                prefabEffectComponent = effectComp,
+                prefabVfxAttributes = vfxAttrib,
+                prefabName = effect.name,
+                spawnSoundEventName = effectComp.soundName,
+                //cullMethod = new Func<EffectData, bool>()
+            };
+            return def;
+        }
+
+        public static void RegisterEffect(EffectDef EffectDef)
+        {
+            //Check if the SurvivorDef has already been registered.
             if (EffectDefDefinitions.Contains(EffectDef))
             {
-                LogCore.LogE(EffectDef + " has already been added to the EffectDef Catalog, please do not try to add the same EffectDef twice.");
+                LogCore.LogE(EffectDef + " has already been registered to the EffectDef Catalog, please do not register the same EffectDef twice.");
                 return;
             }
             //If not, add it to our SurvivorDefinitions

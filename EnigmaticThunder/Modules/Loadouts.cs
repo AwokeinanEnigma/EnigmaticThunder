@@ -13,44 +13,6 @@ using UnityEngine;
 
 namespace EnigmaticThunder.Modules
 {
-    internal static class FixEntityStates
-    {
-        private static Hook set_stateTypeHook;
-        private static Hook set_typeNameHook;
-        private static readonly BindingFlags allFlags = BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static | BindingFlags.NonPublic;
-        private delegate void set_stateTypeDelegate(ref SerializableEntityStateType self, Type value);
-        private delegate void set_typeNameDelegate(ref SerializableEntityStateType self, String value);
-
-        internal static void FixModdedStates()
-        {
-            Type type = typeof(SerializableEntityStateType);
-            HookConfig cfg = default;
-            cfg.Priority = Int32.MinValue;
-            set_stateTypeHook = new Hook(type.GetMethod("set_stateType", allFlags), new set_stateTypeDelegate(SetStateTypeHook), cfg);
-            set_typeNameHook = new Hook(type.GetMethod("set_typeName", allFlags), new set_typeNameDelegate(SetTypeName), cfg);
-
-        }
-
-        private static void SetStateTypeHook(ref this SerializableEntityStateType self, Type value)
-        {
-            self._typeName = value.AssemblyQualifiedName;
-        }
-
-        private static void SetTypeName(ref this SerializableEntityStateType self, String value)
-        {
-            Type t = GetTypeFromName(value);
-            if (t != null)
-            {
-                self.SetStateTypeHook(t);
-            }
-        }
-
-        private static Type GetTypeFromName(String name)
-        {
-            Type[] types = EntityStateCatalog.stateIndexToType;
-            return Type.GetType(name);
-        }
-    }
 
     public class Loadouts : Util.Module
     {
@@ -63,19 +25,18 @@ namespace EnigmaticThunder.Modules
         public override void Load()
         {
             base.Load();
-            FixEntityStates.FixModdedStates();
             //Meow (Waiting for something to happen?)
         }
 
 
 
     
-        public static bool AddEntityStateConfig(EntityStateConfiguration entityStateConfiguration)
+        public static bool RegisterEntityStateConfig(EntityStateConfiguration entityStateConfiguration)
         {
-            //Check if the EntityStateConfiguration has already been added.
+            //Check if the EntityStateConfiguration has already been registered.
             if (EntityStateConfigurationDefinitions.Contains(entityStateConfiguration))
             {
-                string error = entityStateConfiguration.name + " has already been added, please do not try to add the same EntityStateConfiguration twice.";
+                string error = entityStateConfiguration.name + " has already been registered, please do not register the same EntityStateConfiguration twice.";
                 if (entityStateConfiguration.targetType == default)
                 {
                     error = error + " And/Or, the target type has not been set. Please make sure your target has been set before creating your SurvivorDef.";
@@ -89,12 +50,12 @@ namespace EnigmaticThunder.Modules
         }
 
 
-        public static bool AddSkillFamily(SkillFamily skillFamily)
+        public static bool RegisterSkillFamily(SkillFamily skillFamily)
         {
-            //Check if the SurvivorDef has already been added.
+            //Check if the SurvivorDef has already been registered.
             if (SkillFamilyDefinitions.Contains(skillFamily))
             {
-                LogCore.LogE(skillFamily + " has already been added to the SkillFamily Catalog, please do not try to add the same SkillFamily twice.");
+                LogCore.LogE(skillFamily + " has already been registered to the SkillFamily Catalog, please do not register the same SkillFamily twice.");
                 return false;
             }
             //If not, add it to our SurvivorDefinitions
@@ -102,12 +63,13 @@ namespace EnigmaticThunder.Modules
             return true;
         }
 
-        public static bool AddEntityState(Type entityState)
+        public static bool RegisterEntityState(Type entityState)
         {
-            //Check if the entity state has already been added, is abstract, or is not a subclass of the base EntityState
-            if (EntityStateDefinitions.Contains(entityState) || entityState.IsAbstract || !entityState.IsSubclassOf(typeof(EntityState)))
+            //Check if the entity state has already been registered, is abstract, or is not a subclass of the base EntityState
+            if (EntityStateDefinitions.Contains(entityState) || !entityState.IsSubclassOf(typeof(EntityState)) || entityState.IsAbstract)
             {
-                LogCore.LogE(entityState.AssemblyQualifiedName + " is either abstract, not a subclass of an entity state, or has already been added.");
+                LogCore.LogE(entityState.AssemblyQualifiedName + " is either abstract, not a subclass of an entity state, or has already been registered.");
+                LogCore.LogI("Is Abstract: " + entityState.IsAbstract + " Is not Subclass: " + !entityState.IsSubclassOf(typeof(EntityState)) + " Is already added: " + EntityStateDefinitions.Contains(entityState));
                 return false; 
             }
             //If not, add it to our EntityStateDefinitions
@@ -115,12 +77,12 @@ namespace EnigmaticThunder.Modules
             return true;
         }
 
-        public static bool AddSkillDef(SkillDef skillDef)
+        public static bool RegisterSkillDef(SkillDef skillDef)
         {
-            //Check if the SurvivorDef has already been added.
+            //Check if the SurvivorDef has already been registered.
             if (SkillDefDefinitions.Contains(skillDef))
             {
-                LogCore.LogE(skillDef + " has already been added to the SkillDef Catalog, please do not try to add the same SkillDef twice.");
+                LogCore.LogE(skillDef + " has already been registered to the SkillDef Catalog, please do not register the same SkillDef twice.");
                 return false; 
             }
             //If not, add it to our SurvivorDefinitions
@@ -135,12 +97,12 @@ namespace EnigmaticThunder.Modules
         /// </summary>
         /// <param name="survivor">The survivor to add.</param>
         /// <returns>true if survivor will be added</returns>
-        public static bool AddSurvivorDef(SurvivorDef def)
+        public static bool RegisterSurvivorDef(SurvivorDef def)
         {
-            //Check if the SurvivorDef has already been added.
+            //Check if the SurvivorDef has already been registered.
             if (SurvivorDefinitions.Contains(def) || !def.bodyPrefab)
             {
-                string error = Language.GetString(def.displayNameToken) + " has already been added, please do not try to add the same SurvivorDef twice.";
+                string error = Language.GetString(def.displayNameToken) + " has already been registered, please do not register the same SurvivorDef twice.";
                 if (!def.bodyPrefab)
                 {
                     error = error + " And/Or, the body prefab is null. Please make sure your body prefab is not null before creating your SurvivorDef.";

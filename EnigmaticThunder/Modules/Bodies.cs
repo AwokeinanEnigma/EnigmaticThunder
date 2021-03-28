@@ -15,12 +15,12 @@ namespace EnigmaticThunder.Modules
             //Meow (Waiting for something to happen?)
         }
 
-        public static void Add(GameObject body)
+        public static void RegisterBody(GameObject body)
         {
-            //Check if the SurvivorDef has already been added.
-            if (BodyDefinitions.Contains(body))
+            //Check if the SurvivorDef has already been registered.
+            if (BodyDefinitions.Contains(body) || !body)
             {
-                LogCore.LogE(body + " has already been added to the Body Catalog, please do not try to add the same body twice.");
+                LogCore.LogE(body + " has already been registered, please do not register the same body prefab twice.");
                 return;
             }
             //If not, add it to our SurvivorDefinitions

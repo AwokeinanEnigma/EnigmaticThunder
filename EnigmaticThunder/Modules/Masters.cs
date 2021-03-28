@@ -15,12 +15,12 @@ namespace EnigmaticThunder.Modules
             //Meow (Waiting for something to happen?)
         }
 
-        public static void Add(GameObject Master)
+        public static void RegisterMaster(GameObject Master)
         {
-            //Check if the SurvivorDef has already been added.
+            //Check if the SurvivorDef has already been registered.
             if (MasterDefinitions.Contains(Master))
             {
-                LogCore.LogE(Master + " has already been added to the Master Catalog, please do not try to add the same Master twice.");
+                LogCore.LogE(Master + " has already been registered, please do not register the same master prefab twice.");
                 return;
             }
             //If not, add it to our SurvivorDefinitions

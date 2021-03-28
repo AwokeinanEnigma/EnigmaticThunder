@@ -1,45 +1,45 @@
 ﻿using EnigmaticThunder.Util;
 using RoR2;
+using RoR2.Skills;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UnityEngine;
 
 namespace EnigmaticThunder.Modules
 {
-    public class NetworkPrefabs : Module
+    public class SurfaceDefinitions : Module
     {
-        internal static ObservableCollection<GameObject> NetworkPrefabDefinitions = new ObservableCollection<GameObject>();
+        internal static ObservableCollection<SurfaceDef> SurfaceDefDefinitions = new ObservableCollection<SurfaceDef>();
         public override void Load()
         {
             base.Load();
             //Meow (Waiting for something to happen?)
         }
 
-        public static void Add(GameObject NetworkPrefab)
+        public static void RegisterSurfaceDef(SurfaceDef surfaceDef)
         {
-            //Check if the SurvivorDef has already been added.
-            if (NetworkPrefabDefinitions.Contains(NetworkPrefab))
+            //Check if the SurvivorDef has already been registered.
+            if (SurfaceDefDefinitions.Contains(surfaceDef))
             {
-                LogCore.LogE(NetworkPrefab + " has already been added to the Network Prefab Catalog, please do not try to add the same NetworkPrefab twice.");
+                LogCore.LogE(surfaceDef + " has already been registered, please do not register the same SurfaceDef twice.");
                 return;
             }
             //If not, add it to our SurvivorDefinitions
-            NetworkPrefabDefinitions.Add(NetworkPrefab);
+            SurfaceDefDefinitions.Add(surfaceDef);
         }
 
         public override void ModifyContentPack(ContentPack pack)
         {
             base.ModifyContentPack(pack);
-
             //Make a list of survivor defs (we'll be converting it to an array later)
-            List<GameObject> defs = new List<GameObject>();
+            List<SurfaceDef> defs = new List<SurfaceDef>();
             //Add everything from SurvivorDefinitions to it.
-            foreach (GameObject def in NetworkPrefabDefinitions)
+            foreach (SurfaceDef def in SurfaceDefDefinitions)
             {
                 defs.Add(def);
             }
             //Convert the list into an array and give it to the ContentPack.
-            pack.networkedObjectPrefabs = defs.ToArray();
+            pack.surfaceDefs = defs.ToArray();
         }
     }
 }

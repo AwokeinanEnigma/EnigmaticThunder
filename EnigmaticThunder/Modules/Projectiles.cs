@@ -15,16 +15,16 @@ namespace EnigmaticThunder.Modules
             //Meow (Waiting for something to happen?)
         }
 
-        public static void Add(GameObject Projectile)
+        public static void RegisterProjectile(GameObject projectile)
         {
-            //Check if the SurvivorDef has already been added.
-            if (ProjectileDefinitions.Contains(Projectile))
+            //Check if the SurvivorDef has already been registered.
+            if (ProjectileDefinitions.Contains(projectile))
             {
-                LogCore.LogE(Projectile + " has already been added to the Projectile Catalog, please do not try to add the same Projectile twice.");
+                LogCore.LogE(projectile + " has already been registered, please do not register the same projectile twice.");
                 return;
             }
             //If not, add it to our SurvivorDefinitions
-            ProjectileDefinitions.Add(Projectile);
+            ProjectileDefinitions.Add(projectile);
         }
 
         public override void ModifyContentPack(ContentPack pack)

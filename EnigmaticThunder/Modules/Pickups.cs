@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace EnigmaticThunder.Modules
 {
-    class Pickups : Module
+    public class Pickups : Module
     {
         internal static ObservableCollection<EquipmentDef> EquipmentDefDefinitions = new ObservableCollection<EquipmentDef>();
         internal static ObservableCollection<ItemDef> ItemDefDefinitions = new ObservableCollection<ItemDef>();
@@ -17,23 +17,23 @@ namespace EnigmaticThunder.Modules
             //Meow (Waiting for something to happen?)
         }
 
-        public static void AddItem(ItemDef itemDef)
+        public static void RegisterItem(ItemDef itemDef)
         {
-            //Check if the SurvivorDef has already been added.
+            //Check if the SurvivorDef has already been registered.
             if (ItemDefDefinitions.Contains(itemDef))
             {
-                LogCore.LogE(itemDef + " has already been added, please do not try to add the same ItemDef twice.");
+                LogCore.LogE(itemDef + " has already been registered, please do not register the same ItemDef twice.");
                 return;
             }
             //If not, add it to our SurvivorDefinitions
             ItemDefDefinitions.Add(itemDef);
         }
-        public static void AddEquipment(EquipmentDef equipmentDef)
+        public static void RegisterEquipment(EquipmentDef equipmentDef)
         {
-            //Check if the SurvivorDef has already been added.
+            //Check if the SurvivorDef has already been registered.
             if (EquipmentDefDefinitions.Contains(equipmentDef))
             {
-                LogCore.LogE(equipmentDef + " has already been added, please do not try to add the same EquipmentDef twice.");
+                LogCore.LogE(equipmentDef + " has already been registered, please do not register the same EquipmentDef twice.");
                 return;
             }
             //If not, add it to our SurvivorDefinitions

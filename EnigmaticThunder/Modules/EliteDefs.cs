@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace EnigmaticThunder.Modules
 {
-    public class EliteDefs : Module
+    public class Elites : Module
     {
         internal static ObservableCollection<EliteDef> EliteDefDefinitions = new ObservableCollection<EliteDef>();
         public override void Load()
@@ -16,12 +16,12 @@ namespace EnigmaticThunder.Modules
             //Meow (Waiting for something to happen?)
         }
 
-        public static void Add(EliteDef EliteDef)
+        public static void RegisterElite(EliteDef EliteDef)
         {
-            //Check if the SurvivorDef has already been added.
+            //Check if the SurvivorDef has already been registered.
             if (EliteDefDefinitions.Contains(EliteDef))
             {
-                LogCore.LogE(EliteDef + " has already been added to the EliteDef Catalog, please do not try to add the same EliteDef twice.");
+                LogCore.LogE(EliteDef + " has already been registered, please do not register the same EliteDef twice.");
                 return;
             }
             //If not, add it to our SurvivorDefinitions

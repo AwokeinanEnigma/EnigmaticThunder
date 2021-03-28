@@ -1,4 +1,5 @@
 ﻿using BepInEx;
+using EnigmaticThunder.Modules;
 using EnigmaticThunder.Util;
 using RoR2;
 using RoR2.Skills;
@@ -103,6 +104,8 @@ namespace EnigmaticThunder
                 Util.Module item = (Util.Module)Activator.CreateInstance(module);
                 //Log
                 LogCore.LogI("Enabling module: " + item);
+                //Fire
+                item.Load();
                 //Add to collection
                 modules.Add(item);
 
@@ -151,6 +154,7 @@ namespace EnigmaticThunder
         #region Events
         public void Awake()
         {
+            FixEntityStates.RegisterStates();
             Action awake = EnigmaticThunder.awake;
             if (awake == null)
             {

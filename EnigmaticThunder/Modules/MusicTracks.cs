@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace EnigmaticThunder.Modules
 {
-    public class MusicTrackDefs : Module
+    public class MusicTracks : Module
     {
         internal static ObservableCollection<MusicTrackDef> MusicTrackDefDefinitions = new ObservableCollection<MusicTrackDef>();
         public override void Load()
@@ -16,12 +16,12 @@ namespace EnigmaticThunder.Modules
             //Meow (Waiting for something to happen?)
         }
 
-        public static void Add(MusicTrackDef MusicTrackDef)
+        public static void RegisterMusicTrackDef(MusicTrackDef MusicTrackDef)
         {
-            //Check if the SurvivorDef has already been added.
+            //Check if the SurvivorDef has already been registered.
             if (MusicTrackDefDefinitions.Contains(MusicTrackDef))
             {
-                LogCore.LogE(MusicTrackDef + " has already been added to the MusicTrackDef Catalog, please do not try to add the same MusicTrackDef twice.");
+                LogCore.LogE(MusicTrackDef + " has already been registered, please do not register the same MusicTrackDef twice.");
                 return;
             }
             //If not, add it to our SurvivorDefinitions
