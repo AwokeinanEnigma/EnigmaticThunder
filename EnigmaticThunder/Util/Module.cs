@@ -24,7 +24,7 @@ namespace EnigmaticThunder.Util
             EnigmaticThunder.start += Start;
         }
 
-        internal virtual void Start()
+        internal virtual void Start(object _, EventArgs __)
         {
 
         }

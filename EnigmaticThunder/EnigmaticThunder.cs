@@ -40,7 +40,7 @@ namespace EnigmaticThunder
         /// <summary>
         /// Called on the first frame of the game.
         /// </summary>
-        internal static event Action start;
+        internal static event EventHandler start;
 
         /// <summary>
         /// Called when the mod is disabled
@@ -186,12 +186,7 @@ namespace EnigmaticThunder
 
         public void Start()
         {
-            Action awake = EnigmaticThunder.start;
-            if (awake == null)
-            {
-                return;
-            }
-            awake();
+            start?.Invoke(this, null);
         }
 
         public void OnDisable()
