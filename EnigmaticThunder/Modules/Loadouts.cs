@@ -384,6 +384,7 @@ namespace EnigmaticThunder.Modules
             }
 
             var modelSkins = model.GetComponent<ModelSkinController>();
+
             if (modelSkins == null)
             {
                 LogCore.LogW(bodyPrefab.name + " does not have a modelSkinController.\nAdding a new one and attempting to populate the default skin.\nHighly recommended you set the controller up manually.");
@@ -439,11 +440,11 @@ namespace EnigmaticThunder.Modules
                 };
             }
 
-            var skinsArray = modelSkins.skins;
-            var index = skinsArray.Length;
-            Array.Resize(ref skinsArray, index + 1);
-            skinsArray[index] = skin;
-            modelSkins.skins = skinsArray;
+            //Array.Resize(ref modelSkins.skins, modelSkins.skins.Length + 1);
+            //modelSkins.skins[modelSkins.skins.Length - 1] = skin;
+
+            Array.Resize(ref modelSkins.skins, modelSkins.skins.Length + 1);
+            modelSkins.skins[modelSkins.skins.Length - 1] = skin;
             return true;
         }
 

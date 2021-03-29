@@ -175,7 +175,7 @@ namespace EnigmaticThunder.Util
                 }*/
                 var sortedModList = ModList.ToList();
                 sortedModList.Sort(StringComparer.InvariantCulture);
-                LogCore.LogI("[NetworkCompatibility] Adding to the networkModList : ");
+                LogCore.LogI("[NetworkCompatibility] Adding to the networkModList: ");
                 foreach (var mod in sortedModList)
                 {
                     LogCore.LogI(mod);
