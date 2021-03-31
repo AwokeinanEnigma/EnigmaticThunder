@@ -28,10 +28,5 @@ namespace EnigmaticThunder.Util
         {
 
         }
-
-        internal virtual void ModifyContentPack(ContentPack pack)
-        {
-
-        }
     }
 }

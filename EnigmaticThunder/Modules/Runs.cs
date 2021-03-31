@@ -34,9 +34,9 @@ namespace EnigmaticThunder.Modules
             RunDefinitions.Add(run);
         }
 
-        internal override void ModifyContentPack(ContentPack pack)
+        internal void ModifyContentPack()
         {
-            base.ModifyContentPack(pack);
+
 
             //Make a list of survivor defs (we'll be converting it to an array later)
             List<Run> defs = new List<Run>();

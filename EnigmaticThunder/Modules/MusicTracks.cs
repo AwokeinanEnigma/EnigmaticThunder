@@ -35,9 +35,9 @@ namespace EnigmaticThunder.Modules
             MusicTrackDefDefinitions.Add(MusicTrackDef);
         }
 
-        internal override void ModifyContentPack(ContentPack pack)
+        internal void ModifyContentPack()
         {
-            base.ModifyContentPack(pack);
+
             //Make a list of survivor defs (we'll be converting it to an array later)
             List<MusicTrackDef> defs = new List<MusicTrackDef>();
             //Add everything from SurvivorDefinitions to it.

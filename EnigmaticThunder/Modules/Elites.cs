@@ -35,9 +35,9 @@ namespace EnigmaticThunder.Modules
             EliteDefDefinitions.Add(eliteDef);
         }
 
-        internal override void ModifyContentPack(ContentPack pack)
+        internal void ModifyContentPack()
         {
-            base.ModifyContentPack(pack);
+
             //Make a list of survivor defs (we'll be converting it to an array later)
             List<EliteDef> defs = new List<EliteDef>();
             //Add everything from SurvivorDefinitions to it.

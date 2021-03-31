@@ -50,9 +50,9 @@ namespace EnigmaticThunder.Modules
             //If not, add it to our SurvivorDefinitions
             EquipmentDefDefinitions.Add(equipmentDef);
         }
-        internal override void ModifyContentPack(ContentPack pack)
+        internal void ModifyContentPack()
         {
-            base.ModifyContentPack(pack);
+
 
             List<ItemDef> itemDefs = new List<ItemDef>();
             //Add everything from ItemDefDefinitions to it.

@@ -2,6 +2,7 @@
 using EnigmaticThunder.Modules;
 using EnigmaticThunder.Util;
 using RoR2;
+using RoR2.ContentManagement;
 using RoR2.Skills;
 using RoR2.UI;
 using System;
@@ -67,21 +68,6 @@ namespace EnigmaticThunder
 
         internal static ObservableCollection<Util.Module> modules = new ObservableCollection<Util.Module>(); 
 
-        private void AddContent(On.RoR2.ContentManager.orig_SetContentPacks orig, List<ContentPack> newContentPacks)
-        {
-            preContentPackLoad?.Invoke();
-
-            //Modify content pack.
-            foreach (Util.Module module in modules) {
-                LogCore.LogI(module + " is modifying the content pack.");
-                module.ModifyContentPack(internalContentPack);
-            }
-            newContentPacks.Add(internalContentPack);
-
-            postContentPackLoad?.Invoke();
-
-            orig(newContentPacks);
-        }
 
         //@El Conserje call it ConserjeCore or I'll scream
         public EnigmaticThunder()
@@ -125,10 +111,13 @@ namespace EnigmaticThunder
         private void OnChainLoaderFinished()
         {
             //Wait until all mods have loaded.
-            On.RoR2.ContentManager.SetContentPacks += AddContent;
+            RoR2.ContentManagement.ContentManager.collectContentPackProviders += ContentManager_collectContentPackProviders;
         }
 
-
+        private void ContentManager_collectContentPackProviders(ContentManager.AddContentPackProviderDelegate addContentPackProvider)
+        {
+            addContentPackProvider.Invoke()
+        }
 
         private void ModErrors_addition(ErrorListener.LogMessage objectRemoved)
         {

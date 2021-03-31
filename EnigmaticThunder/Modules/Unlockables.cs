@@ -35,9 +35,9 @@ namespace EnigmaticThunder.Modules
             UnlockableDefDefinitions.Add(unlockableDef);
         }
 
-        internal override void ModifyContentPack(ContentPack pack)
+        internal void ModifyContentPack()
         {
-            base.ModifyContentPack(pack);
+
             //Make a list of survivor defs (we'll be converting it to an array later)
             List<UnlockableDef> defs = new List<UnlockableDef>();
             //Add everything from SurvivorDefinitions to it.

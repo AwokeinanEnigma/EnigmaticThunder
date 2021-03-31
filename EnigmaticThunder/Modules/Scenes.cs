@@ -35,9 +35,9 @@ namespace EnigmaticThunder.Modules
             SceneDefDefinitions.Add(sceneDef);
         }
 
-        internal override void ModifyContentPack(ContentPack pack)
+        internal void ModifyContentPack()
         {
-            base.ModifyContentPack(pack);
+
 
             //Make a list of survivor defs (we'll be converting it to an array later)
             List<SceneDef> defs = new List<SceneDef>();

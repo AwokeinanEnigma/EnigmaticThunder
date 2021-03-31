@@ -137,9 +137,9 @@ namespace EnigmaticThunder.Modules
             return true;
         }
 
-        internal override void ModifyContentPack(ContentPack pack)
+        internal void ModifyContentPack()
         {
-            base.ModifyContentPack(pack);
+
             //Make a lists full of added content
 
             List<SkillDef> skillDefs = new List<SkillDef>();
