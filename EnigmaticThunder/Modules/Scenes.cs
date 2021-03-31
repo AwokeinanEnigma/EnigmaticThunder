@@ -35,7 +35,7 @@ namespace EnigmaticThunder.Modules
             SceneDefDefinitions.Add(sceneDef);
         }
 
-        internal void ModifyContentPack()
+        internal static SceneDef[] DumpContent()
         {
 
 
@@ -47,7 +47,7 @@ namespace EnigmaticThunder.Modules
                 defs.Add(def);
             }
             //Convert the list into an array and give it to the ContentPack.
-            pack.sceneDefs = defs.ToArray();
+            return defs.ToArray();
         }
     }
 }

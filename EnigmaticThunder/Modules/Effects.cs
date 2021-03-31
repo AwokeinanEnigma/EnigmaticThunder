@@ -52,10 +52,6 @@ namespace EnigmaticThunder.Modules
             var def = new EffectDef
             {
                 prefab = effect,
-                prefabEffectComponent = effectComp,
-                prefabVfxAttributes = vfxAttrib,
-                prefabName = effect.name,
-                spawnSoundEventName = effectComp.soundName,
                 //cullMethod = new Func<EffectData, bool>()
             };
             RegisterEffect(def);
@@ -93,10 +89,6 @@ namespace EnigmaticThunder.Modules
             var def = new EffectDef
             {
                 prefab = effect,
-                prefabEffectComponent = effectComp,
-                prefabVfxAttributes = vfxAttrib,
-                prefabName = effect.name,
-                spawnSoundEventName = effectComp.soundName,
                 //cullMethod = new Func<EffectData, bool>()
             };
             return def;
@@ -119,7 +111,7 @@ namespace EnigmaticThunder.Modules
             EffectDefDefinitions.Add(effectDef);
         }
 
-        internal void ModifyContentPack()
+        internal static EffectDef[] DumpContent()
         {
 
             //Make a list of survivor defs (we'll be converting it to an array later)
@@ -130,7 +122,7 @@ namespace EnigmaticThunder.Modules
                 defs.Add(def);
             }
             //Convert the list into an array and give it to the ContentPack.
-            pack.effectDefs = defs.ToArray();
+            return defs.ToArray();
         }
     }
 }

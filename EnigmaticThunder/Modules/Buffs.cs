@@ -2,6 +2,7 @@
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using RoR2;
+using RoR2.ContentManagement;
 using RoR2.Skills;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -53,7 +54,7 @@ namespace EnigmaticThunder.Modules
             BuffDefDefinitions.Add(BuffDef);
         }
 
-        internal void ModifyContentPack()
+        internal static BuffDef[] DumpContent()
         {
 
             //Make a list of survivor defs (we'll be converting it to an array later)
@@ -64,7 +65,7 @@ namespace EnigmaticThunder.Modules
                 defs.Add(def);
             }
             //Convert the list into an array and give it to the ContentPack.
-            pack.buffDefs = defs.ToArray();
+            return defs.ToArray();
         }
     }
 }

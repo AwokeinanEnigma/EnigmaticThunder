@@ -34,7 +34,7 @@ namespace EnigmaticThunder.Modules
             NetworkPrefabDefinitions.Add(networkPrefab);
         }
 
-        internal void ModifyContentPack()
+        internal static GameObject[] DumpContent()
         {
 
 
@@ -46,7 +46,7 @@ namespace EnigmaticThunder.Modules
                 defs.Add(def);
             }
             //Convert the list into an array and give it to the ContentPack.
-            pack.networkedObjectPrefabs = defs.ToArray();
+            return defs.ToArray();
         }
     }
 }

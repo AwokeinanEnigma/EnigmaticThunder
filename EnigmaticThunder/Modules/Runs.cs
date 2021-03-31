@@ -34,10 +34,8 @@ namespace EnigmaticThunder.Modules
             RunDefinitions.Add(run);
         }
 
-        internal void ModifyContentPack()
+        internal static Run[] DumpContent()
         {
-
-
             //Make a list of survivor defs (we'll be converting it to an array later)
             List<Run> defs = new List<Run>();
             //Add everything from SurvivorDefinitions to it.
@@ -46,7 +44,7 @@ namespace EnigmaticThunder.Modules
                 defs.Add(def);
             }
             //Convert the list into an array and give it to the ContentPack.
-            pack.gameModePrefabs = defs.ToArray();
+            return defs.ToArray();
         }
     }
 }

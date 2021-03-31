@@ -34,7 +34,7 @@ namespace EnigmaticThunder.Modules
             SurfaceDefDefinitions.Add(surfaceDef);
         }
 
-        internal void ModifyContentPack()
+        internal static SurfaceDef[] DumpContent()
         {
 
             //Make a list of survivor defs (we'll be converting it to an array later)
@@ -45,7 +45,7 @@ namespace EnigmaticThunder.Modules
                 defs.Add(def);
             }
             //Convert the list into an array and give it to the ContentPack.
-            pack.surfaceDefs = defs.ToArray();
+            return defs.ToArray();
         }
     }
 }

@@ -40,7 +40,7 @@ namespace EnigmaticThunder.Modules
             MasterDefinitions.Add(master);
         }
 
-        internal void ModifyContentPack()
+        internal static GameObject[] DumpContent()
         {
 
 
@@ -52,7 +52,7 @@ namespace EnigmaticThunder.Modules
                 defs.Add(def);
             }
             //Convert the list into an array and give it to the ContentPack.
-            pack.masterPrefabs = defs.ToArray();
+            return defs.ToArray();
         }
     }
 }
