@@ -75,7 +75,7 @@ namespace EnigmaticThunder.Util
 
         internal void BuildModList()
         {
-            EnigmaticThunder.start += ScanPluginsForNetworkCompat;
+            EnigmaticThunderPlugin.start += ScanPluginsForNetworkCompat;
         }
 
         private void ScanPluginsForNetworkCompat(object _, EventArgs __)
@@ -88,7 +88,7 @@ namespace EnigmaticThunder.Util
                     var modGuid = pluginInfo.Metadata.GUID;
                     var modVer = pluginInfo.Metadata.Version;
 
-                    if (modGuid == EnigmaticThunder.guid)
+                    if (modGuid == EnigmaticThunderPlugin.guid)
                     {
                         continue;
                     }
@@ -117,7 +117,7 @@ namespace EnigmaticThunder.Util
             }
 
             AddToNetworkModList();
-            EnigmaticThunder.start -= ScanPluginsForNetworkCompat;
+            EnigmaticThunderPlugin.start -= ScanPluginsForNetworkCompat;
         }
 
         private static bool AssemblyHasManualRegistration(Assembly assembly)

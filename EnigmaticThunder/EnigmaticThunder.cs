@@ -23,7 +23,7 @@ using UnityEngine.SceneManagement;
 namespace EnigmaticThunder
 {
     [BepInPlugin(guid, modName, version)]
-    public class EnigmaticThunder : BaseUnityPlugin
+    public class EnigmaticThunderPlugin : BaseUnityPlugin
     {
         //be unique, though you're the same here.
 
@@ -31,7 +31,7 @@ namespace EnigmaticThunder
         public const string modName = "Enigmatic Thunder";
         public const string version = "0.1.0";
 
-        public static EnigmaticThunder instance;
+        public static EnigmaticThunderPlugin instance;
 
         /// <summary>
         /// Called BEFORE the first frame of the game.
@@ -57,7 +57,7 @@ namespace EnigmaticThunder
         private ContentPack internalContentPack = new ContentPack();
         
         /// <summary>
-        /// Called before modules modify the content pack.
+        /// Called before modules    the content pack.
         /// </summary>
         public event Action preContentPackLoad;
         /// <summary>
@@ -84,7 +84,7 @@ namespace EnigmaticThunder
         }
 
         //@El Conserje call it ConserjeCore or I'll scream
-        public EnigmaticThunder()
+        public EnigmaticThunderPlugin()
         {
             LogCore.logger = base.Logger;
 
@@ -92,7 +92,7 @@ namespace EnigmaticThunder
             BepInEx.Logging.Logger.Listeners.Add(new ErrorListener());
             BepInEx.Logging.Logger.Listeners.Add(new ChainLoaderListener());
 
-            SingletonHelper.Assign<EnigmaticThunder>(ref EnigmaticThunder.instance, this);
+            SingletonHelper.Assign<EnigmaticThunderPlugin>(ref EnigmaticThunderPlugin.instance, this);
 
             GatherModules();
 
@@ -164,7 +164,7 @@ namespace EnigmaticThunder
         public void Awake()
         {
             FixEntityStates.RegisterStates();
-            Action awake = EnigmaticThunder.awake;
+            Action awake = EnigmaticThunderPlugin.awake;
             if (awake == null)
             {
                 return;
@@ -176,7 +176,7 @@ namespace EnigmaticThunder
         {
 
 
-            Action fixedUpdate = EnigmaticThunder.onFixedUpdate;
+            Action fixedUpdate = EnigmaticThunderPlugin.onFixedUpdate;
             if (fixedUpdate == null)
             {
                 return;
@@ -191,8 +191,8 @@ namespace EnigmaticThunder
 
         public void OnDisable()
         {
-            SingletonHelper.Unassign<EnigmaticThunder>(EnigmaticThunder.instance, this);
-            Action awake = EnigmaticThunder.onDisable;
+            SingletonHelper.Unassign<EnigmaticThunderPlugin>(EnigmaticThunderPlugin.instance, this);
+            Action awake = EnigmaticThunderPlugin.onDisable;
             if (awake == null)
             {
                 return;
