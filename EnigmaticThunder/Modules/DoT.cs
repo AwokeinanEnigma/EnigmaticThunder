@@ -8,7 +8,7 @@ using Mono.Cecil.Cil;
 using MonoMod.Cil;
 
 namespace EnigmaticThunder.Modules
-{
+{/*
     public class DoT : Module
     {
         internal static ReadOnlyCollection<DotController.DotDef> BaseDotDefs;
@@ -117,6 +117,8 @@ namespace EnigmaticThunder.Modules
                     container.Update?.Invoke(self);
                 }
             }
+            orig(self);
+            //where's muh orig(self)?
         }
-    }
+    }*/
 }

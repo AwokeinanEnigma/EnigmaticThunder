@@ -168,8 +168,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\ChainLoaderListener.cs" />
     <Compile Include="Modules\Commands.cs" />
-    <Compile Include="Util\NetworkCompatibilityHandler.cs" />
-    <Compile Include="Util\KeyValuePairExtensions.cs" />
     <Compile Include="Util\FixEntityStates.cs" />
     <Compile Include="Util\ILLine.cs" />
     <Compile Include="Util\LogCore.cs" />

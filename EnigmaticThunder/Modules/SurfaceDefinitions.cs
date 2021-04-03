@@ -37,6 +37,7 @@ namespace EnigmaticThunder.Modules
         internal override void ModifyContentPack(ContentPack pack)
         {
             base.ModifyContentPack(pack);
+
             //Make a list of survivor defs (we'll be converting it to an array later)
             List<SurfaceDef> defs = new List<SurfaceDef>();
             //Add everything from SurvivorDefinitions to it.

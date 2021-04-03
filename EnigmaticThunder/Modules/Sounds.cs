@@ -139,7 +139,7 @@ namespace EnigmaticThunder.Modules
                 /// <summary>
                 /// Loads the bank into the wwise engine
                 /// </summary>
-                internal void Load()
+                internal bool Load()
                 {
                     //Creates IntPtr of sufficient size.
                     Memory = Marshal.AllocHGlobal(BankData.Length);
@@ -152,11 +152,13 @@ namespace EnigmaticThunder.Modules
                     if (result != AKRESULT.AK_Success)
                     {
                         Debug.LogError("WwiseUnity: AkMemBankLoader: bank loading failed with result " + result);
-                        soundBanks.Remove(this);
+                        return false;
+                        //soundBanks.Remove(this);
                     }
 
                     //BankData is now copied to Memory so is unnecassary
                     BankData = null;
+                    return true;
                 }
 
                 /// <summary>
