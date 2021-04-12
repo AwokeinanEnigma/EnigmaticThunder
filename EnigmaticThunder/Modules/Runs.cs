@@ -11,7 +11,7 @@ namespace EnigmaticThunder.Modules
     /// </summary>
     public class Runs : Module
     {
-        internal static ObservableCollection<Run> RunDefinitions = new ObservableCollection<Run>();
+        internal static ObservableCollection<GameObject> RunDefinitions = new ObservableCollection<GameObject>();
         internal override void Load()
         {
             base.Load();
@@ -22,7 +22,7 @@ namespace EnigmaticThunder.Modules
         /// Registers a run to the game mode catalog
         /// </summary>
         /// <param name="run">The run to register</param>
-        public static void RegisterRun(Run run)
+        public static void RegisterRun(GameObject run)
         {
             //Check if the SurvivorDef has already been registered.
             if (RunDefinitions.Contains(run))
@@ -34,12 +34,12 @@ namespace EnigmaticThunder.Modules
             RunDefinitions.Add(run);
         }
 
-        internal static Run[] DumpContent()
+        internal static GameObject[] DumpContent()
         {
             //Make a list of survivor defs (we'll be converting it to an array later)
-            List<Run> defs = new List<Run>();
+            List<GameObject> defs = new List<GameObject>();
             //Add everything from SurvivorDefinitions to it.
-            foreach (Run def in RunDefinitions)
+            foreach (GameObject def in RunDefinitions)
             {
                 defs.Add(def);
             }

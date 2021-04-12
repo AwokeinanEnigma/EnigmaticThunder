@@ -116,7 +116,7 @@ namespace EnigmaticThunder
 
         private void ContentManager_collectContentPackProviders(ContentManager.AddContentPackProviderDelegate addContentPackProvider)
         {
-            addContentPackProvider.Invoke(new EnigmaticContent());
+            addContentPackProvider(new EnigmaticContent());
         }
 
         private void ModErrors_addition(ErrorListener.LogMessage objectRemoved)

@@ -20,10 +20,10 @@ namespace EnigmaticThunder.Modules
         {
             base.Load();
             //Meow (Waiting for something to happen?)
-            IL.RoR2.BuffCatalog.Init += FixBuffCatalog;
+            //IL.RoR2.BuffCatalog.Init += FixBuffCatalog;
         }
 
-        //Credits to Aaron on the RoR2 modding discord.
+        /*Credits to Aaron on the RoR2 modding discord.
         internal static void FixBuffCatalog(ILContext il)
         {
             ILCursor c = new ILCursor(il);
@@ -36,7 +36,7 @@ namespace EnigmaticThunder.Modules
 
             c.Remove();
             c.Emit(OpCodes.Ldsfld, typeof(ContentManager).GetField(nameof(ContentManager.buffDefs)));
-        }
+        }*/
 
         /// <summary>
         /// Registers a buff def to the buff catalog
