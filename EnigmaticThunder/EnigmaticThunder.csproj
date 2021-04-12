@@ -147,6 +147,7 @@
     <Compile Include="Modules\Artifacts.cs" />
     <Compile Include="Modules\Bodies.cs" />
     <Compile Include="Modules\Buffs.cs" />
+    <Compile Include="Modules\DoT.cs" />
     <Compile Include="Modules\Effects.cs" />
     <Compile Include="Modules\Elites.cs" />
     <Compile Include="Modules\GameEndings.cs" />

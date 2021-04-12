@@ -18,9 +18,15 @@ namespace EnigmaticThunder.Util
         private static void IlHook(ILContext il)
         {
             var cursor = new ILCursor(il);
-            cursor.GotoNext(
+            
+            bool found = cursor.TryGotoNext(
                 x => x.MatchCallvirt(typeof(StackFrame).GetMethod("GetFileLineNumber", BindingFlags.Instance | BindingFlags.Public))
             );
+
+            if (!found)
+            {
+                return;
+            }
 
             cursor.RemoveRange(2);
             cursor.EmitDelegate<Func<StackFrame, string>>(GetLineOrIL);

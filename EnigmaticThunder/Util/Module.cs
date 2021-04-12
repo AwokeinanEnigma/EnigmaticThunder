@@ -21,7 +21,7 @@ namespace EnigmaticThunder.Util
     {
         internal virtual void Load()
         {
-            EnigmaticThunder.start += Start;
+            EnigmaticThunderPlugin.start += Start;
         }
 
         internal virtual void Start(object _, EventArgs __)
