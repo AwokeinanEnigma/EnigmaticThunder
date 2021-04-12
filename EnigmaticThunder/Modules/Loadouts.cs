@@ -42,7 +42,7 @@ namespace EnigmaticThunder.Modules
                 string error = entityStateConfiguration.name + " has already been registered, please do not register the same EntityStateConfiguration twice.";
                 if (entityStateConfiguration.targetType == default)
                 {
-                    error = error + " And/Or, the target type has not been set. Please make sure your target has been set before creating your SurvivorDef.";
+                    error = error + " And/Or, the target type has not been set. Please make sure your target has been set before creating your EntityStateConfiguration.";
                 }
                 LogCore.LogE(error);
                 return false;

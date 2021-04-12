@@ -30,7 +30,7 @@ namespace EnigmaticThunder.Modules
             }
 
             //for bank loading
-            On.RoR2.RoR2Application.OnLoad += RoR2Application_OnLoad1; ;
+            //On.RoR2.RoR2Application.OnLoad += RoR2Application_OnLoad1; ;
         }
 
         private System.Collections.IEnumerator RoR2Application_OnLoad1(On.RoR2.RoR2Application.orig_OnLoad orig, RoR2Application self)
