@@ -50,9 +50,10 @@ namespace EnigmaticThunder.Modules
             //If not, add it to our SurvivorDefinitions
             EquipmentDefDefinitions.Add(equipmentDef);
         }
-        internal override void ModifyContentPack(ContentPack pack)
+
+        internal static ItemDef[] DumpContentItems()
         {
-            base.ModifyContentPack(pack);
+
 
             List<ItemDef> itemDefs = new List<ItemDef>();
             //Add everything from ItemDefDefinitions to it.
@@ -61,16 +62,20 @@ namespace EnigmaticThunder.Modules
                 itemDefs.Add(def);
             }
 
+
+            //Convert our lists into arrays and give it to the ContentPack.
+            return itemDefs.ToArray();
+        }
+
+        internal static EquipmentDef[] DumpContentEquipment()
+        {
             List<EquipmentDef> equipmentDefs = new List<EquipmentDef>();
             //Add everything from EquipmentDefDefinitions to it.
             foreach (EquipmentDef def in EquipmentDefDefinitions)
             {
                 equipmentDefs.Add(def);
             }
-
-            //Convert our lists into arrays and give it to the ContentPack.
-            pack.itemDefs = itemDefs.ToArray();
-            pack.equipmentDefs = equipmentDefs.ToArray();
+            return equipmentDefs.ToArray();
         }
     }
 }

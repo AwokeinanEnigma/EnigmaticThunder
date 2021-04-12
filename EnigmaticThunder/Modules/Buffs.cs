@@ -2,6 +2,7 @@
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using RoR2;
+using RoR2.ContentManagement;
 using RoR2.Skills;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -19,10 +20,10 @@ namespace EnigmaticThunder.Modules
         {
             base.Load();
             //Meow (Waiting for something to happen?)
-            IL.RoR2.BuffCatalog.Init += FixBuffCatalog;
+            //IL.RoR2.BuffCatalog.Init += FixBuffCatalog;
         }
 
-        //Credits to Aaron on the RoR2 modding discord.
+        /*Credits to Aaron on the RoR2 modding discord.
         internal static void FixBuffCatalog(ILContext il)
         {
             ILCursor c = new ILCursor(il);
@@ -35,7 +36,7 @@ namespace EnigmaticThunder.Modules
 
             c.Remove();
             c.Emit(OpCodes.Ldsfld, typeof(ContentManager).GetField(nameof(ContentManager.buffDefs)));
-        }
+        }*/
 
         /// <summary>
         /// Registers a buff def to the buff catalog
@@ -53,9 +54,9 @@ namespace EnigmaticThunder.Modules
             BuffDefDefinitions.Add(BuffDef);
         }
 
-        internal override void ModifyContentPack(ContentPack pack)
+        internal static BuffDef[] DumpContent()
         {
-            base.ModifyContentPack(pack);
+
             //Make a list of survivor defs (we'll be converting it to an array later)
             List<BuffDef> defs = new List<BuffDef>();
             //Add everything from SurvivorDefinitions to it.
@@ -64,7 +65,7 @@ namespace EnigmaticThunder.Modules
                 defs.Add(def);
             }
             //Convert the list into an array and give it to the ContentPack.
-            pack.buffDefs = defs.ToArray();
+            return defs.ToArray();
         }
     }
 }

@@ -35,9 +35,9 @@ namespace EnigmaticThunder.Modules
             EliteDefDefinitions.Add(eliteDef);
         }
 
-        internal override void ModifyContentPack(ContentPack pack)
+        internal static EliteDef[] DumpContent()
         {
-            base.ModifyContentPack(pack);
+
             //Make a list of survivor defs (we'll be converting it to an array later)
             List<EliteDef> defs = new List<EliteDef>();
             //Add everything from SurvivorDefinitions to it.
@@ -46,7 +46,7 @@ namespace EnigmaticThunder.Modules
                 defs.Add(def);
             }
             //Convert the list into an array and give it to the ContentPack.
-            pack.eliteDefs = defs.ToArray();
+            return defs.ToArray();
         }
     }
 }

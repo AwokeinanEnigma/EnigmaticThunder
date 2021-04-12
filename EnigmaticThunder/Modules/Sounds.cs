@@ -30,14 +30,16 @@ namespace EnigmaticThunder.Modules
             }
 
             //for bank loading
-            On.RoR2.RoR2Application.OnLoad += RoR2Application_OnLoad;
+            On.RoR2.RoR2Application.OnLoad += RoR2Application_OnLoad1; ;
         }
 
-        private static void RoR2Application_OnLoad(On.RoR2.RoR2Application.orig_OnLoad orig, RoR2Application self)
+        private System.Collections.IEnumerator RoR2Application_OnLoad1(On.RoR2.RoR2Application.orig_OnLoad orig, RoR2Application self)
         {
             orig(self);
             LoadBanks();
+            yield break;
         }
+
 
         /// <summary>
         /// Loads all the banks, can only be called once and after RoR2.RoR2Application.OnLoad because of the initialization of the init bank

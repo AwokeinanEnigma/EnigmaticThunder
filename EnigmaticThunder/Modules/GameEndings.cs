@@ -35,9 +35,9 @@ namespace EnigmaticThunder.Modules
             GameEndingDefDefinitions.Add(gameEndingDef);
         }
 
-        internal override void ModifyContentPack(ContentPack pack)
+        internal static GameEndingDef[] DumpContent()
         {
-            base.ModifyContentPack(pack);
+
             //Make a list of survivor defs (we'll be converting it to an array later)
             List<GameEndingDef> defs = new List<GameEndingDef>();
             //Add everything from SurvivorDefinitions to it.
@@ -46,7 +46,7 @@ namespace EnigmaticThunder.Modules
                 defs.Add(def);
             }
             //Convert the list into an array and give it to the ContentPack.
-            pack.gameEndingDefs = defs.ToArray();
+            return defs.ToArray();
         }
     }
 }

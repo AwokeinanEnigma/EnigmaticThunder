@@ -35,9 +35,9 @@ namespace EnigmaticThunder.Modules
             MusicTrackDefDefinitions.Add(MusicTrackDef);
         }
 
-        internal override void ModifyContentPack(ContentPack pack)
+        internal static MusicTrackDef[] DumpContent()
         {
-            base.ModifyContentPack(pack);
+
             //Make a list of survivor defs (we'll be converting it to an array later)
             List<MusicTrackDef> defs = new List<MusicTrackDef>();
             //Add everything from SurvivorDefinitions to it.
@@ -46,7 +46,7 @@ namespace EnigmaticThunder.Modules
                 defs.Add(def);
             }
             //Convert the list into an array and give it to the ContentPack.
-            pack.musicTrackDefs = defs.ToArray();
+            return defs.ToArray();
         }
     }
 }

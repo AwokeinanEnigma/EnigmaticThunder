@@ -166,6 +166,13 @@ where TDelegate : Delegate
             _ = cursor.Emit(OpCodes.Ldloc_1);
         }
 
+        internal static UnlockableDef[] DumpContent()
+        {
+
+            //Make a list of survivor defs (we'll be converting it to an array later)
+            List<UnlockableDef> defs = new List<UnlockableDef>();
+            //Add everything from SurvivorDefinitions to it.
+            foreach (UnlockableDef def in UnlockableDefDefinitions)
         public struct UnlockableInfo
         {
             internal string Name;
@@ -195,7 +202,8 @@ where TDelegate : Delegate
             {
                 base.userProfile.RevokeAchievement(this.AchievementIdentifier);
             }
-
+            return defs.ToArray();
+          
             base.userProfile.RevokeUnlockable(UnlockableCatalog.GetUnlockableDef(this.UnlockableIdentifier));
         }
         #endregion

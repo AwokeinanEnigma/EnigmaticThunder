@@ -35,9 +35,9 @@ namespace EnigmaticThunder.Modules
             SceneDefDefinitions.Add(sceneDef);
         }
 
-        internal override void ModifyContentPack(ContentPack pack)
+        internal static SceneDef[] DumpContent()
         {
-            base.ModifyContentPack(pack);
+
 
             //Make a list of survivor defs (we'll be converting it to an array later)
             List<SceneDef> defs = new List<SceneDef>();
@@ -47,7 +47,7 @@ namespace EnigmaticThunder.Modules
                 defs.Add(def);
             }
             //Convert the list into an array and give it to the ContentPack.
-            pack.sceneDefs = defs.ToArray();
+            return defs.ToArray();
         }
     }
 }

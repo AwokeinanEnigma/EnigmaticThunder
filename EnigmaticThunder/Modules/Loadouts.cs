@@ -136,10 +136,53 @@ namespace EnigmaticThunder.Modules
             SurvivorDefinitions.Add(survivorDef);
             return true;
         }
+        internal static SkillFamily[] DumpContentSkillFamilies() {
 
-        internal override void ModifyContentPack(ContentPack pack)
+            List<SkillFamily> skillFamilies = new List<SkillFamily>();
+            //Add everything from SkillFamilyDefinitions to it.
+            foreach (SkillFamily def in SkillFamilyDefinitions)
+            {
+                skillFamilies.Add(def);
+            }
+            return skillFamilies.ToArray(); 
+        }
+
+        internal static Type[] DumpEntityStates()
         {
-            base.ModifyContentPack(pack);
+            List<Type> entityStates = new List<Type>();
+            //Add everything from EntityStateDefinitions to it.
+            foreach (Type def in EntityStateDefinitions)
+            {
+                entityStates.Add(def);
+            }
+            return entityStates.ToArray();
+        }
+
+        internal static SurvivorDef[] DumpSurvivorDefs() {
+
+            List<SurvivorDef> survivorDefs = new List<SurvivorDef>();
+            //Add everything from SurvivorDefinitions to it.
+            foreach (SurvivorDef def in SurvivorDefinitions)
+            {
+                survivorDefs.Add(def);
+            }
+            return survivorDefs.ToArray(); 
+        }
+
+        internal static EntityStateConfiguration[] DumpConfigs() {
+
+            List<EntityStateConfiguration> entityStateConfigs = new List<EntityStateConfiguration>();
+            //Add everything from SurvivorDefinitions to it.
+            foreach (EntityStateConfiguration def in EntityStateConfigurationDefinitions)
+            {
+                entityStateConfigs.Add(def);
+            }
+            return entityStateConfigs.ToArray();
+        }
+
+        internal static SkillDef[] DumpContentSkillDefs()
+        {
+
             //Make a lists full of added content
 
             List<SkillDef> skillDefs = new List<SkillDef>();
@@ -148,42 +191,7 @@ namespace EnigmaticThunder.Modules
             {
                 skillDefs.Add(def);
             }
-
-            List<SkillFamily> skillFamilies = new List<SkillFamily>();
-            //Add everything from SkillFamilyDefinitions to it.
-            foreach (SkillFamily def in SkillFamilyDefinitions)
-            {
-                skillFamilies.Add(def);
-            }
-
-            List<Type> entityStates = new List<Type>();
-            //Add everything from EntityStateDefinitions to it.
-            foreach (Type def in EntityStateDefinitions)
-            {
-                entityStates.Add(def);
-            }
-
-            List<SurvivorDef> survivorDefs = new List<SurvivorDef>();
-            //Add everything from SurvivorDefinitions to it.
-            foreach (SurvivorDef def in SurvivorDefinitions)
-            {
-                survivorDefs.Add(def);
-            }
-
-            List<EntityStateConfiguration> entityStateConfigs = new List<EntityStateConfiguration>();
-            //Add everything from SurvivorDefinitions to it.
-            foreach (EntityStateConfiguration def in EntityStateConfigurationDefinitions)
-            {
-                entityStateConfigs.Add(def);
-            }
-
-            //Convert our lists into arrays and give it to the ContentPack.
-            pack.entityStateConfigurations = entityStateConfigs.ToArray();
-            //Add entity states AFTER we add our entity state configs
-            pack.entityStateTypes = entityStates.ToArray();
-            pack.skillDefs = skillDefs.ToArray();
-            pack.skillFamilies = skillFamilies.ToArray();
-            pack.survivorDefs = survivorDefs.ToArray();
+            return skillDefs.ToArray();
         }
         #region Adding Skins
         /// <summary>
