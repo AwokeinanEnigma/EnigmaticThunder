@@ -175,6 +175,7 @@
     <Compile Include="Util\Module.cs" />
     <Compile Include="Util\EnigmaticList.cs" />
     <Compile Include="Util\ErrorListener.cs" />
+    <Compile Include="Util\NetworkCompatibility.cs" />
     <Compile Include="Util\Reflection.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

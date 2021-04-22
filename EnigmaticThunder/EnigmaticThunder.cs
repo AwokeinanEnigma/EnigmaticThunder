@@ -1,6 +1,7 @@
 ﻿using BepInEx;
 using EnigmaticThunder.Modules;
 using EnigmaticThunder.Util;
+using EnigmaticThunder.Utils;
 using RoR2;
 using RoR2.ContentManagement;
 using RoR2.Skills;
@@ -81,6 +82,9 @@ namespace EnigmaticThunder
             SingletonHelper.Assign<EnigmaticThunderPlugin>(ref EnigmaticThunderPlugin.instance, this);
 
             GatherModules();
+
+            var networkCompatibilityHandler = new NetworkCompatibilityHandler();
+            networkCompatibilityHandler.BuildModList();
 
             RoR2.RoR2Application.isModded = true;
 
